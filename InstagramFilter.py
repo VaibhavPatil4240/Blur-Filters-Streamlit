@@ -140,9 +140,9 @@ if(paintBox and not numpy_image is None):
 if(hdrBox and not numpy_image is None):
     numpy_image=HDR(numpy_image,hdrStrength,hdrIntensity/10)
 
-if(sepiaBox):
+if(sepiaBox and not numpy_image is None):
     numpy_image=sepia(numpy_image)
-if(embossBox):
+if(embossBox and not numpy_image is None):
     numpy_image=emboss(numpy_image)
 
 if(not numpy_image is None):
