@@ -2,7 +2,6 @@ import numpy as np
 import cv2
 import streamlit as st
 from PIL import Image
-import imutils
 import cv2
 
 
@@ -11,8 +10,7 @@ final_image=None
 class Stitcher:
     def __init__(self):
         #Check for OpenCv version
-        self.isv3 = imutils.is_cv3(or_better=True)
-
+        pass
     def drawMatches(self,imageA, imageB, kpsA, kpsB, matches, status):
 		# initialize the output visualization image
         (hA, wA) = imageA.shape[:2]
@@ -58,18 +56,10 @@ class Stitcher:
         # convert the image to grayscale
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         # check to see if we are using OpenCV 3.X
-        if self.isv3:
-            # detect and extract features from the image
-            descriptor = cv2.xfeatures2d.SIFT_create()
-            (kps, features) = descriptor.detectAndCompute(image, None)
+        # detect and extract features from the image
+        descriptor = cv2.xfeatures2d.SIFT_create()
+        (kps, features) = descriptor.detectAndCompute(image, None)
         # otherwise, we are using OpenCV 2.4.X
-        else:
-            # detect keypoints in the image
-            detector = cv2.FeatureDetector_create("SIFT")
-            kps = detector.detect(gray)
-            # extract features from the image
-            extractor = cv2.DescriptorExtractor_create("SIFT")
-            (kps, features) = extractor.compute(gray, kps)
         # convert the keypoints from KeyPoint objects to NumPy
         # arrays
         kps = np.float32([kp.pt for kp in kps])
