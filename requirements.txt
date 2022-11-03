@@ -27,7 +27,7 @@ pydeck==0.8.0b4
 Pygments==2.13.0
 Pympler==1.0.1
 pyparsing==3.0.9
-opencv-contrib-python==4.6.0.66
+opencv-contrib-python-headless==4.6.0.66
 pyrsistent==0.19.1
 python-dateutil==2.8.2
 pytz==2022.6
